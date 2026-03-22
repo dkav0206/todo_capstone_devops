@@ -1,0 +1,43 @@
+- name: Playbook demo
+  hosts: list_host
+  become: true #Chạy với quyền cao nhất
+
+  tasks:
+    - name: update apt
+      apt:
+        update_cache: yes
+
+    - name: Install docker
+      apt:
+        name: docker.io
+        state: present
+    
+    - name: Install docker-compose
+      shell: curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+    - name: Phân quyền docker-compose
+      shell: chmod 755 /usr/local/bin/docker-compose
+
+    - name: Clone public Git repository
+      git:
+        repo: https://github.com/dkav0206/todo_capstone_devops
+        dest: /home/ubuntu/todo_app
+        version: main   
+        force: yes
+
+    - name: Create .env file for backend
+      copy:
+        dest: /home/ubuntu/todo_app/backend/.env
+        content: |
+          MONGO_URI=
+          GMAIL_PASSWORD=
+          PORT=
+          JWT_SECRET=
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Run docker-compose to start the app
+      shell: docker-compose up -d
+      args:
+        chdir: /home/ubuntu/todo_app
