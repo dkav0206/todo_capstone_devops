@@ -35,7 +35,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.get("/api/get-product", (req, res) => {
     let data = [{
         id: 1,
-        name: "product 3"
+        name: "product 213123123"
     },
     {
         id: 2,
