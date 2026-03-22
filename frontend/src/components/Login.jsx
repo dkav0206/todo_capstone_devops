@@ -8,8 +8,6 @@ function Login() {
     const [error, setError] = useState();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const test = await axios.get("/get-product")
-        console.log(test)
         try {
             const result = await axios.post("/user/login", formData)
             tokenDispatch({ type: "SET_TOKEN", payload: result.data.token })
