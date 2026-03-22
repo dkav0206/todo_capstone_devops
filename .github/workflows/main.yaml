@@ -1,21 +1,21 @@
-name: deploy
-on:
-  push:
-    branches: [main]
-jobs:
-  deployment:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy VPS
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.VPS_KEY }}
-          script: |
-            cd ~/todo_capstone_devops
-            sudo git pull
-            sudo docker-compose down
-            sudo docker-compose build --no-cache
-            sudo docker-compose up -d
-            sudo docker image prune -f
+# name: deploy
+# on:
+#   push:
+#     branches: [main]
+# jobs:
+#   deployment:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy VPS
+#         uses: appleboy/ssh-action@v0.1.6
+#         with:
+#           host: ${{ secrets.VPS_HOST }}
+#           username: ${{ secrets.VPS_USERNAME }}
+#           key: ${{ secrets.VPS_KEY }}
+#           script: |
+#             cd ~/todo_capstone_devops
+#             sudo git pull
+#             sudo docker-compose down
+#             sudo docker-compose build --no-cache
+#             sudo docker-compose up -d
+#             sudo docker image prune -f
