@@ -1,0 +1,12 @@
+services:
+  backend_todo:
+    build: ./backend
+    container_name: todo_backend
+    env_file: ./backend/.env
+    ports:
+      - "8000:8088"
+  frontend_todo:
+    build: ./frontend/build
+    container_name: todo_frontend
+    ports:
+      - "3000:80"
