@@ -14,10 +14,11 @@ const port = process.env.PORT || 8088
 mongoose.set('strictQuery', true);
 
 //middlewares
-app.use(express.json())
 app.use(cors({
     origin: ["http://localhost:3000", "http://3.26.47.239:3000"]
 }))
+app.use(express.json())
+
 
 //db config
 mongoose.connect(process.env.MONGO_URI, {

@@ -12,7 +12,6 @@ const createToken = (id) => {
 
 //login user
 const loginUser = async (req,res) => {
-    return res.status(400).json({message: "Please enter all fields"})
     const {email, password} = req.body;
     try{
         if(!email || !password){
