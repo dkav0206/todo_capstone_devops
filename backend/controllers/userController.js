@@ -30,7 +30,6 @@ const loginUser = async (req,res) => {
         const token = createToken(user._id)
         res.status(200).json({user,token})
     } catch (error) {
-        print("????")
         res.status(500).json({message: error.message})
     }
 }
