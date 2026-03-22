@@ -14,6 +14,13 @@ const port = process.env.PORT || 8088
 mongoose.set('strictQuery', true);
 
 //middlewares
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
+
+
 app.use(cors({
     origin: ["http://localhost:3000", "http://3.26.47.239:3000"]
 }))
