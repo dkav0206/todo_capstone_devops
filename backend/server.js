@@ -16,7 +16,7 @@ mongoose.set('strictQuery', true);
 //middlewares
 
 app.use(cors({
-    origin: ["http://localhost:3000", "http://3.26.47.239:3000"]
+    origin: ["http://localhost:3000", "http://3.107.52.207:3000"]
 }))
 app.use(express.json())
 
